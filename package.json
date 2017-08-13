@@ -1,0 +1,36 @@
+{
+  "name": "kryptstorm-http",
+  "version": "1.0.1",
+  "description": "Kryptstorm HTTP",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kryptstorm/kryptstorm-http"
+  },
+  "author": {
+    "name": "Tuan Nguyen",
+    "email": "kryptstorm@gmail.com",
+    "url": "https://github.com/kryptstorm"
+  },
+  "main": "lib/index",
+  "scripts": {
+    "build": "./node_modules/.bin/babel src --out-dir lib",
+    "test": "./node_modules/.bin/mocha lib/test.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0",
+    "prettier": "^1.5.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "method-override": "^2.3.9"
+  }
+}
