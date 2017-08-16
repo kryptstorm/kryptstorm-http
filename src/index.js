@@ -140,7 +140,7 @@ const _preparePayload = (req, rest) => {
       break;
     case "PUT":
       _payload.params = _.isObject(params) ? params : {};
-      _payload.attributes = _.isObject(body) ? body : {};
+      _payload.body = _.isObject(body) ? body : {};
       break;
     case "DELETE":
       _payload.params = _.isObject(params) ? params : {};
