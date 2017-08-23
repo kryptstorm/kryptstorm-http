@@ -193,10 +193,12 @@ const _prepareSort = sort => {
 const _preparePagination = (limit, page) => {
   const p = { limit$: 20, skip$: 0 };
 
-  if (_.isNumber(Number(limit)) && limit > 0) {
+  (limit = Number(limit)), (page = Number(page));
+
+  if (_.isNumber(limit) && limit > 0) {
     p.limit$ = limit;
   }
-  if (_.isNumber(Number(page)) && page > 0) {
+  if (_.isNumber(page) && page > 0) {
     p.skip$ = (page - 1 < 0 ? page : page - 1) * limit;
   }
   return p;
