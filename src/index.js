@@ -118,7 +118,13 @@ const _prepareRoutes = routes => {
 /** Prepare payload to put to seneca */
 const _preparePayload = (req, rest) => {
   const { query = {}, body = {}, params = {}, method } = req;
-  const { _limit, _page, _sort, _accessToken = "", _refreshToken = "" } = query;
+  const {
+    _limit = 20,
+    _page = 1,
+    _sort,
+    _accessToken = "",
+    _refreshToken = ""
+  } = query;
   let _payload = {};
 
   /** Bind _payload */
@@ -177,15 +183,13 @@ const _prepareSort = sort => {
 
 /** Prepare pagination */
 const _preparePagination = (limit, page) => {
-  const p = { limit$: 20, offset$: 0 };
-  limit = parseInt(limit, 10);
-  page = parseInt(page, 10);
+  const p = { limit$: 20, skip$: 0 };
 
-  if (_.isNumber(limit) && limit > 0) {
+  if (_.isNumber(Number(limit)) && limit > 0) {
     p.limit$ = limit;
   }
-  if (_.isNumber(page) && page > 0) {
-    p.offset$ = (page - 1 < 0 ? page : page - 1) * limit;
+  if (_.isNumber(Number(page)) && page > 0) {
+    p.skip$ = (page - 1 < 0 ? page : page - 1) * limit;
   }
   return p;
 };
