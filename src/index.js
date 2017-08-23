@@ -125,12 +125,15 @@ const _preparePayload = (req, rest) => {
     _accessToken = "",
     _refreshToken = ""
   } = query;
-  let _payload = {};
+  let _payload = {
+    accessToken: _accessToken,
+    refreshToken: _refreshToken
+  };
 
   /** Bind _payload */
   switch (method) {
     case "POST":
-      _payload.attributes = _.isObject(body) ? body : {};
+      _payload.body = _.isObject(body) ? body : {};
       break;
     case "GET":
       _payload.query = _preapreQuery(query, [
@@ -140,9 +143,12 @@ const _preparePayload = (req, rest) => {
         "_accessToken",
         "_refreshToken"
       ]);
-      _payload.sort$ = _prepareSort(_sort);
+      _.assign(
+        _payload.query,
+        _prepareSort(_sort),
+        _preparePagination(_limit, _page)
+      );
       _payload.params = _.isObject(params) ? params : {};
-      _.assign(_payload, _preparePagination(_limit, _page));
       break;
     case "PUT":
       _payload.params = _.isObject(params) ? params : {};
