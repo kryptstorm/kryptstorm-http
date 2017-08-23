@@ -177,14 +177,16 @@ const _preapreQuery = (query = {}, excludeFields) => {
 /** Prepare sort */
 const _prepareSort = sort => {
   if (!_.isString(sort) || !sort) sort = "id";
-  return _.reduce(
-    sort.split(","),
-    (_sort, field) => {
-      if (field[0] !== "-") return _.assign(_sort, { [field]: 1 });
-      return _.assign(_sort, { [field.substr(1)]: -1 });
-    },
-    {}
-  );
+  return {
+    sort$: _.reduce(
+      sort.split(","),
+      (_sort, field) => {
+        if (field[0] !== "-") return _.assign(_sort, { [field]: 1 });
+        return _.assign(_sort, { [field.substr(1)]: -1 });
+      },
+      {}
+    )
+  };
 };
 
 /** Prepare pagination */
