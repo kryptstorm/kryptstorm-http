@@ -117,7 +117,7 @@ const _prepareRoutes = routes => {
 
 /** Prepare payload to put to seneca */
 const _preparePayload = (req, rest) => {
-  const { query = {}, body = {}, params = {} } = req;
+  const { query = {}, body = {}, params = {}, method } = req;
   const { _limit, _page, _sort, _accessToken = "", _refreshToken = "" } = query;
   let _payload = {};
 
