@@ -15,7 +15,7 @@
   "main": "lib/index",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-dir lib",
-    "test": "./node_modules/.bin/mocha lib/test.js --compilers js:babel-core/register"
+    "test": "./node_modules/.bin/mocha lib/test.js"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

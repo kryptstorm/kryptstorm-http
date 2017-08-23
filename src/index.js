@@ -134,7 +134,7 @@ const _preparePayload = (req, rest) => {
         "_accessToken",
         "_refreshToken"
       ]);
-      _payload.sort = _prepareSort(_sort);
+      _payload.sort$ = _prepareSort(_sort);
       _payload.params = _.isObject(params) ? params : {};
       _.assign(_payload, _preparePagination(_limit, _page));
       break;
@@ -177,15 +177,15 @@ const _prepareSort = sort => {
 
 /** Prepare pagination */
 const _preparePagination = (limit, page) => {
-  const p = { limit: 20, offset: 0 };
+  const p = { limit$: 20, offset$: 0 };
   limit = parseInt(limit, 10);
   page = parseInt(page, 10);
 
   if (_.isNumber(limit) && limit > 0) {
-    p.limit = limit;
+    p.limit$ = limit;
   }
   if (_.isNumber(page) && page > 0) {
-    p.offset = (page - 1 < 0 ? page : page - 1) * limit;
+    p.offset$ = (page - 1 < 0 ? page : page - 1) * limit;
   }
   return p;
 };
