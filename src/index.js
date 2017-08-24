@@ -181,7 +181,9 @@ const _prepareSort = sort => {
     sort$: _.reduce(
       sort.split(","),
       (_sort, field) => {
+        if (!_.isString(field)) return _sort;
         if (field[0] !== "-") return _.assign(_sort, { [field]: 1 });
+        if (!field.substr(1)) return _sort;
         return _.assign(_sort, { [field.substr(1)]: -1 });
       },
       {}
