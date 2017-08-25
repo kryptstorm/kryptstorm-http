@@ -133,7 +133,7 @@ const _preparePayload = (req, rest) => {
   /** Bind _payload */
   switch (method) {
     case "POST":
-      _payload.body = _.isObject(body) ? body : {};
+      _payload.attributes = _.isObject(body) ? body : {};
       break;
     case "GET":
       _payload.query = _preapreQuery(query, [
@@ -152,7 +152,7 @@ const _preparePayload = (req, rest) => {
       break;
     case "PUT":
       _payload.params = _.isObject(params) ? params : {};
-      _payload.body = _.isObject(body) ? body : {};
+      _payload.attributes = _.isObject(body) ? body : {};
       break;
     case "DELETE":
       _payload.params = _.isObject(params) ? params : {};
